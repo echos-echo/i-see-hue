@@ -1,13 +1,39 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #696969;
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+/* the div in which the color tiles will load in and line up */
+#game-row {
+  display: flex;
+  justify-content: center;
+  max-width: 80vw;
+  flex-wrap: nowrap;
+}
+
+.moveable-tile {
+  width: 75px;
+  height: 75px;
+  cursor: move;
+}
+
+/* an individual color tile div; its color is decided upon creation */
+.tile {
+  border: ridge 2px whitesmoke;
+  width: 75px;
+  height: 75px;
+}
+
+.over {
+  border: 2px dotted red;
+}
+
+[draggable] {
+  user-select: none;
 }
