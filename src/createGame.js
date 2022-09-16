@@ -18,3 +18,7 @@ export const generateColors = tileNumbers => {
     }
     return colorArray;
 }
+
+export const sortColors = colors => {
+    return colors.sort((a, b) => a - b);
+}
