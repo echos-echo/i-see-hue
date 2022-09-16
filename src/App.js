@@ -3,7 +3,7 @@ import GameRow from './components/GameRow';
 
 function App() {
   return (
-    <div class="content">
+    <div className="content">
       <div id="header">
         <h1>Test Your Color Perception</h1>
         <h2>Click and Drag the tiles so the colors appear in gradient order</h2>
