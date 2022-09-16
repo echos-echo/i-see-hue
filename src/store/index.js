@@ -25,7 +25,7 @@ const reducer = (state = {}, action) => {
     switch(action.type) {
         case _updateCurrentTiles:
             return {...state, tiles: action.tiles};
-        case _getSolution:
+        case _updateSolution:
             return {...state, solution: action.solution};
         default:
             return {...state};
