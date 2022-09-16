@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { sortColors } from '../createGame';
 
 const _getSolution = 'GET_SOLUTION';
 const _updateCurrentTiles = 'UPDATE_CURRENT_TILES';
@@ -12,10 +13,10 @@ export const updateCurrentTiles = tiles => {
     }
 }
 
-export const getSolution = tiles => {
+export const updateSolution = tiles => {
     return {
-        type: _getSolution,
-        solution: []
+        type: _updateSolution,
+        solution: sortColors([...tiles])
     }
 }
 
