@@ -18,11 +18,3 @@ export const generateColors = tileNumbers => {
     }
     return colorArray;
 }
-
-// clears the previous row so the new row of color tiles can append
-// *childe is not a typo, it's just an inside joke. sorry.
-export const deleteChilde = (gameRow) => {
-    while(gameRow.firstChild) {
-        gameRow.removeChild(gameRow.lastChild);
-    }
-}
