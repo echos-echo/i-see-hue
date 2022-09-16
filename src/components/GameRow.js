@@ -7,6 +7,8 @@ function GameRow() {
   return (
     <div id="game-row">
       {colors.map(color => <SingleTile color={color} key={color}/>)}
+      <hr/>
+      <button id="next-round">Next Round of Colors</button>
     </div>
   );
 }
