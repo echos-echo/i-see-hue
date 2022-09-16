@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { sortColors } from '../createGame';
 
-const _getSolution = 'GET_SOLUTION';
 const _updateCurrentTiles = 'UPDATE_CURRENT_TILES';
 const _updateSolution = 'UPDATE_SOLUTION';
-
 
 export const updateCurrentTiles = tiles => {
     return {
@@ -19,7 +17,6 @@ export const updateSolution = tiles => {
         solution: sortColors([...tiles])
     }
 }
-
 
 const reducer = (state = {}, action) => {
     switch(action.type) {

@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from 'react-redux';
 function GameRow() {
     const dispatch = useDispatch();
     const [colors, setColors] = React.useState(useSelector(state => state.tiles) || generateColors(10));
+
     React.useEffect(() => {
         dispatch(updateSolution(colors));
         dispatch(updateCurrentTiles(colors));
     }, [colors, dispatch]);
+    
     return (
         <div id='play'>
             <div id="game-row">
