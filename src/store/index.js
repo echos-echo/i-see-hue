@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-const _getCurrentTiles = 'GET_CURRENT_TILES';
 const _getSolution = 'GET_SOLUTION';
-// const _updateCurrentTiles = 'UPDATE_CURRENT_TILES';
+const _updateCurrentTiles = 'UPDATE_CURRENT_TILES';
 const _updateSolution = 'UPDATE_SOLUTION';
 
-export const getCurrentTiles = tiles => {
+
+export const updateCurrentTiles = tiles => {
     return {
-        type: _getCurrentTiles,
+        type: _updateCurrentTiles,
         tiles: tiles
     }
 }
@@ -22,7 +22,7 @@ export const getSolution = tiles => {
 
 const reducer = (state = {}, action) => {
     switch(action.type) {
-        case _getCurrentTiles:
+        case _updateCurrentTiles:
             return {...state, tiles: action.tiles};
         case _getSolution:
             return {...state, solution: action.solution};
