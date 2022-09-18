@@ -18,6 +18,7 @@ function GameRow() {
         const newColors = [...colors];
         // the tile we are dragging out of a spot
         const tileToRemove = newColors.splice(result.source.index, 1);
+        console.log(tileToRemove + ' removed')
         // inserts the dragged tile into the destination index
         // refer to the result object for more information on how to utilize handleOnDragEnd
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
@@ -37,12 +38,12 @@ function GameRow() {
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         <SingleTile id={firstColor} color={firstColor} style={{backgroundColor: `hsl(${firstColor}, 50%, 50%)`}}/>
-                        {colors.slice(1, 9).map((color, index) => 
-                        (<Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution)} index={index}>
+                        {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
+                        <Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution)} index={index+1}>
                             {provided => (
                                 <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
-                        </Draggable>))}
+                        </Draggable>)}
                         {provided.placeholder}
                         <SingleTile id={lastColor} color={lastColor} style={{backgroundColor: `hsl(${lastColor}, 50%, 50%)`}}/>
                     </div>
