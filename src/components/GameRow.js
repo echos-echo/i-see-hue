@@ -16,7 +16,7 @@ function GameRow() {
     
     return (
         <DragDropContext id='play' onDragEnd={() => {}}>
-            <Droppable droppableId='game-row'>
+            <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         {colors.map((color, index) => 
