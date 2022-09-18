@@ -20,14 +20,12 @@ function GameRow() {
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         {colors.map((color, index) => 
-                        <div key={color.toString()}>
-                        <Draggable draggableId={color.toString()} index={index}>
+                        (<Draggable key={color.toString()} draggableId={color.toString()} index={index}>
                             {provided => (
                                 <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
-                        </Draggable>
+                        </Draggable>))}
                         {provided.placeholder}
-                        </div>)}
                     </div>
                 )}
             </Droppable>
