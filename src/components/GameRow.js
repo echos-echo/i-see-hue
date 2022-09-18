@@ -1,4 +1,4 @@
-import {generateColors} from '../createGame';
+import {generateColors, checkSolution, sortColors} from '../createGame';
 import React from 'react';
 import SingleTile from './SingleTile';
 import { updateCurrentTiles, updateSolution } from '../store';
@@ -8,6 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 function GameRow() {
     const dispatch = useDispatch();
     const [colors, setColors] = React.useState(useSelector(state => state.tiles) || generateColors(10));
+    const solution = sortColors([...colors]);
     // the lowest and highest hue values; tiles not meant to be dragged
     const firstColor = Math.min.apply(null, colors);
     const lastColor = Math.max.apply(null, colors);
@@ -20,11 +21,11 @@ function GameRow() {
         // inserts the dragged tile into the destination index
         // refer to the result object for more information on how to utilize handleOnDragEnd
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
-        // finally, the updated array is 
-        console.dir(newColors)
+        // finally, the updated array is set in our state
         setColors(newColors);
+        return checkSolution(colors, solution) ? window.alert('congrats') : null;
     }
-
+    
     React.useEffect(() => {
         dispatch(updateSolution(colors));
         dispatch(updateCurrentTiles(colors));
@@ -37,7 +38,7 @@ function GameRow() {
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         <SingleTile id={firstColor} color={firstColor} style={{backgroundColor: `hsl(${firstColor}, 50%, 50%)`}}/>
                         {colors.map((color, index) => 
-                        (<Draggable key={color.toString()} draggableId={color.toString()} index={index}>
+                        (<Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution)} index={index}>
                             {provided => (
                                 <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
