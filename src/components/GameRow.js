@@ -15,16 +15,19 @@ function GameRow() {
     }, [colors, dispatch]);
     
     return (
-        <DragDropContext id='play'>
+        <DragDropContext id='play' onDragEnd={() => {}}>
             <Droppable droppableId='game-row'>
-                {(provided) => (
+                {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         {colors.map((color, index) => 
-                        <Draggable key={color} draggableId={color.toString()} index={index}>
+                        <div key={color.toString()}>
+                        <Draggable draggableId={color.toString()} index={index}>
                             {provided => (
-                                <SingleTile key={color} color={color}/>
+                                <SingleTile id={color.toString()} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
-                        </Draggable>)}
+                        </Draggable>
+                        {provided.placeholder}
+                        </div>)}
                     </div>
                 )}
             </Droppable>
