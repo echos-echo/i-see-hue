@@ -22,3 +22,7 @@ export const generateColors = tileNumbers => {
 export const sortColors = colors => {
     return colors.sort((a, b) => a - b);
 }
+
+export const checkSolution = (current, solution) => {
+    return solution.every((tile, ind) => tile === current[ind]);
+}

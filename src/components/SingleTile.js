@@ -2,19 +2,19 @@ import React from "react";
 
 function SingleTile(props) {
     const [tileColor, setTileColor] = React.useState(props.color);
-    const miscProps = {
+    let miscProps = props.provided ? ({
         ...props.provided.draggableProps, 
+        ...props.provided.dragHandleProps,
         style: {
             backgroundColor: `hsl(${props.color}, 50%, 50%)`,
             ...props.provided.draggableProps.style
-        }}
+        }}) : {};
     return (
                 <div 
                 className="tile" 
                 style={{backgroundColor: `hsl(${props.color}, 50%, 50%)`}} 
                 id={tileColor}
                 {...miscProps}
-                {...props.provided.dragHandleProps}
                 ref={props.innerRef}>
                 </div>
             )
