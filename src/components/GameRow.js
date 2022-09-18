@@ -3,6 +3,7 @@ import React from 'react';
 import SingleTile from './SingleTile';
 import { updateCurrentTiles, updateSolution } from '../store';
 import { useSelector, useDispatch } from 'react-redux';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function GameRow() {
     const dispatch = useDispatch();
@@ -14,13 +15,22 @@ function GameRow() {
     }, [colors, dispatch]);
     
     return (
-        <div id='play'>
-            <div id="game-row">
-            {colors.map(color => <SingleTile color={color} key={color}/>)}
-            </div>
+        <DragDropContext id='play'>
+            <Droppable droppableId='game-row'>
+                {(provided) => (
+                    <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
+                        {colors.map((color, index) => 
+                        <Draggable key={color} draggableId={color.toString()} index={index}>
+                            {provided => (
+                                <SingleTile key={color} color={color}/>
+                            )}
+                        </Draggable>)}
+                    </div>
+                )}
+            </Droppable>
             <hr/>
             <button id="next-round" onClick={() => setColors(generateColors(10))}>Next Round of Colors</button>
-        </div>
+        </DragDropContext>
   );
 }
 
