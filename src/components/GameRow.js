@@ -37,7 +37,7 @@ function GameRow() {
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         <SingleTile id={firstColor} color={firstColor} style={{backgroundColor: `hsl(${firstColor}, 50%, 50%)`}}/>
-                        {colors.map((color, index) => 
+                        {colors.slice(1, 9).map((color, index) => 
                         (<Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution)} index={index}>
                             {provided => (
                                 <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
