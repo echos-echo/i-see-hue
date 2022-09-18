@@ -17,11 +17,11 @@ function GameRow() {
         // creates a new array using our base state colors
         const newColors = [...colors];
         // the tile we are dragging out of a spot
-        const tileToRemove = newColors.splice(result.source.index, 1);
+        const tileToRemove = newColors.splice(result.source.index + 1, 1);
         console.log(tileToRemove + ' removed')
         // inserts the dragged tile into the destination index
         // refer to the result object for more information on how to utilize handleOnDragEnd
-        newColors.splice(result.destination.index, 0, tileToRemove[0]);
+        newColors.splice(result.destination.index + 1, 0, tileToRemove[0]);
         // finally, the updated array is set in our state
         setColors(newColors);
         return checkSolution(colors, solution) ? window.alert('congrats') : null;
