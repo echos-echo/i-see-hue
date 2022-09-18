@@ -15,7 +15,7 @@ function GameRow() {
     }, [colors, dispatch]);
     
     return (
-        <DragDropContext id='play' onDragEnd={() => {}}>
+        <DragDropContext id='play' onDragEnd={() => {console.log('drag ended')}}>
             <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
@@ -23,7 +23,7 @@ function GameRow() {
                         <div key={color.toString()}>
                         <Draggable draggableId={color.toString()} index={index}>
                             {provided => (
-                                <SingleTile id={color.toString()} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
+                                <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
                         </Draggable>
                         {provided.placeholder}
