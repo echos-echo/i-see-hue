@@ -15,6 +15,7 @@ function GameRow() {
     const [firstColor, setFirstColor] = React.useState(Math.min(...startingColors));
     const [lastColor, setLastColor] = React.useState(Math.max(...startingColors));
     const [colors, setColors] = React.useState(startingColors.filter(color => color !== firstColor && color !== lastColor));
+    const [moves, setMoves] = React.useState(0);
     // states must be initialized in this order!!!
 
     // function that handles whenever a tile finishes dragging
@@ -32,6 +33,7 @@ function GameRow() {
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
         // finally, the updated array is set in our state
         setColors(newColors);
+        setMoves(moves + 1);
     }
 
     // handles the button that loads the next round of colors; a 'reset' button
@@ -54,6 +56,7 @@ function GameRow() {
     // useEffect that will reassign the main color array used to make <Draggable>
     React.useEffect(() => {
         setColors(startingColors.filter(color => color !== firstColor && color !== lastColor));
+        setMoves(0);
     }, [startingColors, firstColor, lastColor]);
     
     return (
@@ -61,12 +64,12 @@ function GameRow() {
         // cannot next multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
-            <Droppable droppableId='game-row' direction='horizontal'>
+            <Droppable droppableId='game-row' direction='horizontal' id='game-row'>
                 {provided => (
                     // ONE root element in the return of Droppable's callback argument
                     // provided contains properties inherent to react-beautiful-dnd
                     // it allows styling, reference to html, and draggable specific id-ing, amongst others
-                    <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
+                    <div {...provided.droppableProps} ref = {provided.innerRef} >
                         {/* first SingleTile: the firstColor in the row (does not drag or drop) */}
                         <SingleTile color={firstColor}/>
                         {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
@@ -85,7 +88,7 @@ function GameRow() {
             </Droppable>
             <hr/>
             {/* button that will load the next round of colors */}
-            <NextGame handler={handleOnClick} clicks={5}/>
+            <NextGame handler={handleOnClick} moves={moves}/>
         </DragDropContext>
   );
 }
