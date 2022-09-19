@@ -20,6 +20,9 @@ export const generateColors = tileNumbers => {
     return colorArray;
 }
 
+// creates the solution array given an array of random colors
+// it WILL sort the array in place AND return a new array,
+// so please be sure to pass in a new array with the values, not the original array
 export const sortColors = colors => {
     return colors.sort((a, b) => a - b);
 }
