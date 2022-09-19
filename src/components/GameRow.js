@@ -2,6 +2,7 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import SingleTile from './SingleTile';
 import {generateColors, checkSolution, sortColors} from '../createGame';
+import NextGame from './NextGame';
 
 const _GAME_SIZE = 12;
 
@@ -40,7 +41,7 @@ function GameRow() {
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
     React.useEffect(() => {
-        if (checkSolution(colors, solution.slice(1, solution.length - 1))) window.alert('congrats');
+        if (checkSolution(colors, solution.slice(1, solution.length - 1))) document.querySelector('#nextPrompt').style.display = 'block';
     }, [colors, solution]);
 
     // useEffect that will reassign the solution, first/last colors, based on the newly generated game
@@ -84,7 +85,7 @@ function GameRow() {
             </Droppable>
             <hr/>
             {/* button that will load the next round of colors */}
-            <button id="next-round" onClick={handleOnClick}>Next Round of Colors</button>
+            <NextGame handler={handleOnClick} clicks={5}/>
         </DragDropContext>
   );
 }
