@@ -11,29 +11,15 @@ body {
 
 /* the div in which the color tiles will load in and line up */
 #game-row {
+  border: 2px solid white;
   display: flex;
   justify-content: center;
-  max-width: 80vw;
+  max-width:min-content;
   flex-wrap: nowrap;
-}
-
-.moveable-tile {
-  width: 75px;
-  height: 75px;
-  cursor: move;
 }
 
 /* an individual color tile div; its color is decided upon creation */
 .tile {
-  border: ridge 2px whitesmoke;
   width: 75px;
   height: 75px;
-}
-
-.over {
-  border: 2px dotted red;
-}
-
-[draggable] {
-  user-select: none;
 }

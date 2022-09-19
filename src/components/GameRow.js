@@ -4,7 +4,9 @@ import SingleTile from './SingleTile';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function GameRow() {
+    // initial generated array of all colors
     const [startingColors, setStartingColors] = React.useState(generateColors(10));
+    // setting the solution array
     const [solution, setSolution] = React.useState(sortColors([...startingColors]));
     // the lowest and highest hue values; tiles not meant to be dragged
     const firstColor = Math.min.apply(null, startingColors);
@@ -21,6 +23,7 @@ function GameRow() {
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
         // finally, the updated array is set in our state
         setColors(newColors);
+        console.log(firstColor + ' and ' + lastColor)
         console.dir(newColors);
         console.dir(solution.slice(1, solution.length - 1))
         return checkSolution(colors, solution.slice(1, solution.length - 1)) ? window.alert('congrats') : null;
@@ -28,7 +31,7 @@ function GameRow() {
     
     React.useEffect(() => {
         if (checkSolution(colors, solution.slice(1, solution.length - 1))) window.alert('congrats');
-    }, [colors]);
+    }, [colors, solution]);
     
     return (
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
