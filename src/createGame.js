@@ -27,6 +27,8 @@ export const sortColors = colors => {
     return colors.sort((a, b) => a - b);
 }
 
+// passes in the current array of tiles and the solution array
+// returns true or false
 export const checkSolution = (current, solution) => {
     return solution.every((tile, ind) => tile === current[ind]);
 }
