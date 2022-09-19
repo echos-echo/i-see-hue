@@ -36,3 +36,9 @@ body {
 #nextPrompt {
   display: none;
 }
+
+@media screen and (max-width: 414px) {
+  #game-row {
+    flex-direction: column;
+  }
+}
