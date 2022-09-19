@@ -37,8 +37,25 @@ h1, h2, h3, button {
 
 /* an individual color tile div; its color is decided upon creation */
 .tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   width: 75px;
   height: 75px;
+}
+
+@keyframes shaker {
+	0% { transform: translate(3px, 0); }
+	50% { transform: translate(-3px, 0); }
+	100% { transform: translate(3px, 0); }
+}
+
+.shake {
+	animation-name: shaker;
+	animation-duration: 0.12s;
+	transform-origin:50% 50%;
+	animation-timing-function: linear;
 }
 
 /* a 'splash' screen when user first lands on this page: will disappear */

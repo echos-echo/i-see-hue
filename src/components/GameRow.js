@@ -78,18 +78,18 @@ function GameRow() {
                     // it allows styling, reference to html, and draggable specific id-ing, amongst others
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         {/* first SingleTile: the firstColor in the row (does not drag or drop) */}
-                        <SingleTile color={firstColor}/>
+                        <SingleTile color={firstColor} text='x'/>
                         {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
                         <Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={complete} index={index}>
                             {provided => (
-                                <SingleTile id={color} innerRef={provided.innerRef} provided={provided} color={color}/>
+                                <SingleTile innerRef={provided.innerRef} provided={provided} color={color} text=''/>
                             )}
                         </Draggable>)}
                         {/* provided.placeholder creates a placeholder source element wherever you hover over
                         so there are no strange effects and it smoothly drags over other Draggable elements */}
                         {provided.placeholder}
                         {/* last SingleTile: the lastColor in the row (does not drag or drop) */}
-                        <SingleTile color={lastColor}/>
+                        <SingleTile color={lastColor} text='x'/>
                     </div>
                 )}
             </Droppable>

@@ -11,12 +11,22 @@ function SingleTile(props) {
             backgroundColor: `hsl(${props.color}, 50%, 50%)`,
             ...props.provided.draggableProps.style
         }}) : {};
+    function handleTileShaking(e) {
+        e.target.classList.add('shake');
+        setTimeout(() => {
+            e.target.classList.remove('shake');
+        }, 1000)
+    }
+
     return (
                 <div 
                 className="tile" 
                 style={{backgroundColor: `hsl(${props.color}, 50%, 50%)`}}
                 {...miscProps}
-                ref={props.innerRef}>
+                ref={props.innerRef}
+                onMouseDown={(event) => props.text === 'x' ? handleTileShaking(event) : null}
+                >
+                    <h2>{props.text}</h2>
                 </div>
             )
 }
