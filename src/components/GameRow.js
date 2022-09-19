@@ -15,6 +15,7 @@ function GameRow() {
     // states must be initialized in this order!!!
 
     function handleOnDragEnd(result) {
+        if(!result.destination) return;
         // creates a new array using our base state colors
         const newColors = [...colors];
         // the tile we are dragging out of a spot
@@ -24,9 +25,6 @@ function GameRow() {
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
         // finally, the updated array is set in our state
         setColors(newColors);
-        console.log(firstColor + ' and ' + lastColor)
-        console.dir(newColors);
-        console.dir(solution.slice(1, solution.length - 1))
     }
 
     function handleOnClick() {
@@ -44,15 +42,15 @@ function GameRow() {
             <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
-                        <SingleTile id={firstColor} color={firstColor} style={{backgroundColor: `hsl(${firstColor}, 50%, 50%)`}}/>
+                        <SingleTile color={firstColor}/>
                         {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
                         <Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution.slice(1, solution.length - 1))} index={index}>
                             {provided => (
-                                <SingleTile id={color} style={{backgroundColor: `hsl(${color}, 50%, 50%)`}} innerRef={provided.innerRef} provided={provided} color={color}/>
+                                <SingleTile innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
                         </Draggable>)}
                         {provided.placeholder}
-                        <SingleTile id={lastColor} color={lastColor} style={{backgroundColor: `hsl(${lastColor}, 50%, 50%)`}}/>
+                        <SingleTile color={lastColor}/>
                     </div>
                 )}
             </Droppable>

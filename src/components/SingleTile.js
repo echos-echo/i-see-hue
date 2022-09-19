@@ -1,7 +1,9 @@
 import React from "react";
 
 function SingleTile(props) {
-    const [tileColor, setTileColor] = React.useState(props.color);
+    // SingleTile's only purpose is to:
+    // - create a div of class tile
+    // - make sure the tile is the color passed into props, props.color
     let miscProps = props.provided ? ({
         ...props.provided.draggableProps, 
         ...props.provided.dragHandleProps,
@@ -12,8 +14,7 @@ function SingleTile(props) {
     return (
                 <div 
                 className="tile" 
-                style={{backgroundColor: `hsl(${props.color}, 50%, 50%)`}} 
-                id={tileColor}
+                style={{backgroundColor: `hsl(${props.color}, 50%, 50%)`}}
                 {...miscProps}
                 ref={props.innerRef}>
                 </div>
