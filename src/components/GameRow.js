@@ -16,6 +16,7 @@ function GameRow() {
     const [lastColor, setLastColor] = React.useState(Math.max(...startingColors));
     const [colors, setColors] = React.useState(startingColors.filter(color => color !== firstColor && color !== lastColor));
     const [moves, setMoves] = React.useState(0);
+    const [complete, setComplete] = React.useState(false);
     // states must be initialized in this order!!!
 
     // function that handles whenever a tile finishes dragging
@@ -43,7 +44,11 @@ function GameRow() {
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
     React.useEffect(() => {
-        if (checkSolution(colors, solution.slice(1, solution.length - 1))) document.querySelector('#nextPrompt').style.display = 'flex';
+        if(checkSolution(colors, solution.slice(1, solution.length - 1))) {
+            document.querySelector('#nextPrompt').style.display = 'flex';
+            document.querySelector('#game-row').style.border = '4px solid black';
+            setComplete(true);
+        }
     }, [colors, solution]);
 
     // useEffect that will reassign the solution, first/last colors, based on the newly generated game
@@ -56,6 +61,8 @@ function GameRow() {
     // useEffect that will reassign the main color array used to make <Draggable>
     React.useEffect(() => {
         setColors(startingColors.filter(color => color !== firstColor && color !== lastColor));
+        setComplete(false);
+        document.querySelector('#game-row').style.border = '3px solid white';
         setMoves(0);
     }, [startingColors, firstColor, lastColor]);
     
@@ -73,7 +80,7 @@ function GameRow() {
                         {/* first SingleTile: the firstColor in the row (does not drag or drop) */}
                         <SingleTile color={firstColor}/>
                         {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
-                        <Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={checkSolution(colors, solution.slice(1, solution.length - 1))} index={index}>
+                        <Draggable key={color.toString()} draggableId={color.toString()} isDragDisabled={complete} index={index}>
                             {provided => (
                                 <SingleTile id={color} innerRef={provided.innerRef} provided={provided} color={color}/>
                             )}
@@ -87,7 +94,8 @@ function GameRow() {
                 )}
             </Droppable>
             {/* button that will load the next round of colors */}
-            <button onClick={handleOnClick}>do hue forfeit?</button>
+            {complete ? null
+            : <button onClick={handleOnClick}>do hue forfeit?</button>}
             <NextGame handler={handleOnClick} moves={moves}/>
         </DragDropContext>
   );
