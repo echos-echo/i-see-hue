@@ -43,7 +43,7 @@ function GameRow() {
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
     React.useEffect(() => {
-        if (checkSolution(colors, solution.slice(1, solution.length - 1))) document.querySelector('#nextPrompt').style.display = 'block';
+        if (checkSolution(colors, solution.slice(1, solution.length - 1))) document.querySelector('#nextPrompt').style.display = 'flex';
     }, [colors, solution]);
 
     // useEffect that will reassign the solution, first/last colors, based on the newly generated game

@@ -17,7 +17,6 @@ function SingleTile(props) {
                 style={{backgroundColor: `hsl(${props.color}, 50%, 50%)`}}
                 {...miscProps}
                 ref={props.innerRef}>
-                    <p>{props.color}</p>
                 </div>
             )
 }
