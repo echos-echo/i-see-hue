@@ -60,6 +60,7 @@ h1, h2, h3, button {
 
 /* a 'splash' screen when user first lands on this page: will disappear */
 #splash {
+  text-align: center;
   height: 100vh;
   width: 90vw;
   background-color: #dfdfdf;
@@ -108,7 +109,10 @@ button:hover {
 /* tiles appear slightly smaller on mobile screens */
 @media screen and (max-width: 414px) {
   .tile {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+  }
+  body {
+    overflow:auto;
   }
 }
