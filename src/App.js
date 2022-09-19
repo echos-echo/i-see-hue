@@ -1,4 +1,3 @@
-import './App.css';
 import GameRow from './components/GameRow';
 import React from 'react';
 

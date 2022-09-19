@@ -12,6 +12,7 @@ function GameRow() {
     const firstColor = Math.min.apply(null, startingColors);
     const lastColor = Math.max.apply(null, startingColors);
     const [colors, setColors] = React.useState(startingColors.filter(color => color !== firstColor && color !== lastColor));
+    // states must be initialized in this order!!!
 
     function handleOnDragEnd(result) {
         // creates a new array using our base state colors
@@ -26,7 +27,12 @@ function GameRow() {
         console.log(firstColor + ' and ' + lastColor)
         console.dir(newColors);
         console.dir(solution.slice(1, solution.length - 1))
-        return checkSolution(colors, solution.slice(1, solution.length - 1)) ? window.alert('congrats') : null;
+    }
+
+    function handleOnClick() {
+        setStartingColors(generateColors(10)); 
+        setColors(startingColors.filter(color => color !== firstColor && color !== lastColor));
+        setSolution(sortColors([...startingColors]))
     }
     
     React.useEffect(() => {
@@ -51,10 +57,7 @@ function GameRow() {
                 )}
             </Droppable>
             <hr/>
-            <button id="next-round" onClick={() => {
-                setStartingColors(generateColors(10)); 
-                setColors(startingColors.filter(color => color !== firstColor && color !== lastColor));
-                setSolution(sortColors([...startingColors]))}}>Next Round of Colors</button>
+            <button id="next-round" onClick={handleOnClick}>Next Round of Colors</button>
         </DragDropContext>
   );
 }
