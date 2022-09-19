@@ -3,14 +3,16 @@ import React from 'react';
 import SingleTile from './SingleTile';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+const _GAME_SIZE = 12;
+
 function GameRow() {
     // initial generated array of all colors
     const [startingColors, setStartingColors] = React.useState(generateColors(10));
     // setting the solution array
     const [solution, setSolution] = React.useState(sortColors([...startingColors]));
     // the lowest and highest hue values; tiles not meant to be dragged
-    const firstColor = Math.min.apply(null, startingColors);
-    const lastColor = Math.max.apply(null, startingColors);
+    const [firstColor, setFirstColor] = React.useState(Math.min.apply(null, startingColors));
+    const [lastColor, setLastColor] = React.useState(Math.max.apply(null, startingColors));
     const [colors, setColors] = React.useState(startingColors.filter(color => color !== firstColor && color !== lastColor));
     // states must be initialized in this order!!!
 
@@ -25,12 +27,17 @@ function GameRow() {
         newColors.splice(result.destination.index, 0, tileToRemove[0]);
         // finally, the updated array is set in our state
         setColors(newColors);
+        console.dir(newColors);
+        // console.dir(solution);
+        console.log(firstColor + ' and ' + lastColor)
     }
 
     function handleOnClick() {
         setStartingColors(generateColors(10)); 
+        setSolution(sortColors([...startingColors]));
+        setFirstColor(Math.min.apply(null, startingColors));
+        setLastColor(Math.max.apply(null, startingColors));
         setColors(startingColors.filter(color => color !== firstColor && color !== lastColor));
-        setSolution(sortColors([...startingColors]))
     }
     
     React.useEffect(() => {
