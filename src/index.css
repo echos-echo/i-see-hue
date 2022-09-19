@@ -99,8 +99,8 @@ button:hover {
 
 /* the div that appears once sorting by user is complete, then prompts user to continue the game */
 #nextPrompt {
-  width: 50vw;
-  height: 15vh;
+  width: 50%;
+  height: 150px;
   background-color:#dfdfdf;
   border-radius: 8px;
   display: none;
