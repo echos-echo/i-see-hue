@@ -59,7 +59,7 @@ function GameRow() {
         // DragDropContext is the space in which Droppables exist and Draggable can be dropped into
         // cannot next multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
-            Droppable is the space in which Draggables can land, a 'target' so to speak
+            {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
             <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     // ONE root element in the return of Droppable's callback argument

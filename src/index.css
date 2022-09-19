@@ -23,3 +23,12 @@ body {
   width: 75px;
   height: 75px;
 }
+
+#splash {
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  display: none;
+}
