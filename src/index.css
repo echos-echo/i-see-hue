@@ -107,7 +107,7 @@ button:hover {
 }
 
 /* tiles appear slightly smaller on mobile screens */
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 800px) {
   .tile {
     width: 40px;
     height: 40px;
