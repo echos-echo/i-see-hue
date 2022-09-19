@@ -2,16 +2,34 @@
 
 // generates an array of random colors, by hue value
 // the array has the number of tileNumbers, provided when invoked
-export const generateColors = tileNumbers => {
+export const generateColors = (tileNumbers, mode) => {
     const colorArray = [];
     // runs if there are still tiles left to generate a color for
     while (tileNumbers > 0) {
         // initializing a random hue...
         let randomHue = Math.round(Math.random() * 255);
+        const holder = randomHue;
         // if the random hue already exists in our array, keep randomizing until the value does not already exist
-        // eslint-disable-next-line
-        while (colorArray.some(color => Math.abs(color - randomHue) <= 5 )) {
-            randomHue = Math.round(Math.random() * 255);
+        switch(mode) {
+            case 'medium':
+                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                    randomHue = Math.round(Math.random() * 255);
+                };
+                break;
+            case 'hard':
+                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                    randomHue = Math.round(Math.random() * 255);
+                };
+                break;
+            case 'extra':
+                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                    randomHue = Math.round(Math.random() * 255);
+                };
+                break;
+            default:
+                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                    randomHue = Math.round(Math.random() * 255);
+                };
         }
         // add the new, random hue to our array of colors
         colorArray.push(randomHue);
