@@ -1,12 +1,9 @@
 import {generateColors, checkSolution, sortColors} from '../createGame';
 import React from 'react';
 import SingleTile from './SingleTile';
-import { updateCurrentTiles, updateSolution } from '../store';
-import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function GameRow() {
-    const dispatch = useDispatch();
     const [startingColors, setStartingColors] = React.useState(generateColors(10));
     const [solution, setSolution] = React.useState(sortColors([...startingColors]));
     // the lowest and highest hue values; tiles not meant to be dragged
@@ -30,8 +27,8 @@ function GameRow() {
     }
     
     React.useEffect(() => {
-        return checkSolution(colors, solution.slice(1, solution.length - 1)) ? window.alert('congrats') : null;
-    }, [colors, dispatch]);
+        if (checkSolution(colors, solution.slice(1, solution.length - 1))) window.alert('congrats');
+    }, [colors]);
     
     return (
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
