@@ -9,7 +9,8 @@ export const generateColors = tileNumbers => {
         // initializing a random hue...
         let randomHue = Math.round(Math.random() * 255);
         // if the random hue already exists in our array, keep randomizing until the value does not already exist
-        while (colorArray.includes(randomHue)) {
+        // eslint-disable-next-line
+        while (colorArray.some(color => Math.abs(color - randomHue) <= 5 )) {
             randomHue = Math.round(Math.random() * 255);
         }
         // add the new, random hue to our array of colors
