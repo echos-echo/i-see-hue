@@ -5,9 +5,6 @@ import React from 'react';
 function App() {
   return (
     <div className="content">
-      <div id='mobileWarning'>
-        <p>please turn your device on its side to continue</p>
-      </div>
       <Splash/>
       <div id="header">
         <h1>Test Your Color Perception</h1>

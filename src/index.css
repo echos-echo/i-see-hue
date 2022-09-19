@@ -38,18 +38,8 @@ body {
 }
 
 @media screen and (max-width: 414px) {
-  @media screen and (orientation:portrait) {
-    #header {
-      display: none;
-    }
-    #mobileWarning {
-      display: block;
-    }
-  }
-  
-  @media screen and (orientation:landscape) {
-    #mobileWarning {
-      display: none;
-    }
+  .tile {
+    width: 50px;
+    height: 50px;
   }
 }

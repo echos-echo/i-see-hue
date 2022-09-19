@@ -64,12 +64,12 @@ function GameRow() {
         // cannot next multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
-            <Droppable droppableId='game-row' direction='horizontal' id='game-row'>
+            <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     // ONE root element in the return of Droppable's callback argument
                     // provided contains properties inherent to react-beautiful-dnd
                     // it allows styling, reference to html, and draggable specific id-ing, amongst others
-                    <div {...provided.droppableProps} ref = {provided.innerRef} >
+                    <div {...provided.droppableProps} ref = {provided.innerRef} id='game-row'>
                         {/* first SingleTile: the firstColor in the row (does not drag or drop) */}
                         <SingleTile color={firstColor}/>
                         {colors.filter(color => color !== firstColor && color !== lastColor).map((color, index) => 
@@ -88,6 +88,7 @@ function GameRow() {
             </Droppable>
             <hr/>
             {/* button that will load the next round of colors */}
+            <button onClick={handleOnClick}>do hue forfeit?</button>
             <NextGame handler={handleOnClick} moves={moves}/>
         </DragDropContext>
   );
