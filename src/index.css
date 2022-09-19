@@ -3,10 +3,27 @@
 }
 
 body {
-  background-color: #696969;
-  margin: 10px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-weight: 200;
+  background-color: #c3c3c3;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.content > * > *{
+  margin: 2vh 0;
+}
+
+h1, h2, h3, button {
+  font-weight: 200;
+}
+
+.content, #splash, #header, #nextPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* the div in which the color tiles will load in and line up */

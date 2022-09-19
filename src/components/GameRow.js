@@ -86,7 +86,6 @@ function GameRow() {
                     </div>
                 )}
             </Droppable>
-            <hr/>
             {/* button that will load the next round of colors */}
             <button onClick={handleOnClick}>do hue forfeit?</button>
             <NextGame handler={handleOnClick} moves={moves}/>
