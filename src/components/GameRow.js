@@ -1,5 +1,5 @@
 import {generateColors, checkSolution, sortColors} from '../createGame';
-import React, { useEffect } from 'react';
+import React from 'react';
 import SingleTile from './SingleTile';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
