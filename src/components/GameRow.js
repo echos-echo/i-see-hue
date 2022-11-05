@@ -7,8 +7,9 @@ import NextGame from './NextGame';
 const _GAME_SIZE = 12;
 
 function GameRow() {
+    const [difficulty, setDifficult] = React.useState('medium');
     // initial generated array of all colors
-    const [startingColors, setStartingColors] = React.useState(generateColors(_GAME_SIZE));
+    const [startingColors, setStartingColors] = React.useState(generateColors(_GAME_SIZE, difficulty));
     // setting the solution array
     const [solution, setSolution] = React.useState(sortColors([...startingColors]));
     // the lowest and highest hue values; tiles not meant to be dragged
@@ -38,8 +39,8 @@ function GameRow() {
     }
 
     // handles the button that loads the next round of colors; a 'reset' button
-    function handleOnClick() {
-        setStartingColors(generateColors(_GAME_SIZE)); 
+    function handleOnClick(difficulty) {
+        setStartingColors(generateColors(_GAME_SIZE, difficulty)); 
     }
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
@@ -71,6 +72,12 @@ function GameRow() {
         // cannot next multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
+            <div id='difficulties'>
+                <button onClick={() => handleOnClick('easy')}>Easy</button>
+                <button onClick={() => handleOnClick('medium')}>Medium</button>
+                <button onClick={() => handleOnClick('hard')}>Hard</button>
+                <button onClick={() => handleOnClick('extra')}>You might be a robot</button>
+            </div>
             <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     // ONE root element in the return of Droppable's callback argument
@@ -95,8 +102,8 @@ function GameRow() {
             </Droppable>
             {/* button that will load the next round of colors */}
             {complete ? null
-            : <button onClick={handleOnClick}>do hue forfeit?</button>}
-            <NextGame handler={handleOnClick} moves={moves}/>
+            : <button onClick={() => handleOnClick(difficulty)}>do hue forfeit?</button>}
+            <NextGame handler={handleOnClick} mode={difficulty} moves={moves}/>
         </DragDropContext>
   );
 }

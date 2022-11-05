@@ -8,26 +8,25 @@ export const generateColors = (tileNumbers, mode) => {
     while (tileNumbers > 0) {
         // initializing a random hue...
         let randomHue = Math.round(Math.random() * 255);
-        const holder = randomHue;
         // if the random hue already exists in our array, keep randomizing until the value does not already exist
         switch(mode) {
-            case 'medium':
-                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+            case 'easy':
+                while (colorArray.some(color => Math.abs(color - randomHue) <= 13 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'hard':
-                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) <= 5 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'extra':
-                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) >= 30 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             default:
-                while (colorArray.some(color => Math.abs(color - holder) <= 5 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) <= 10 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
         }
