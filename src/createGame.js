@@ -11,22 +11,26 @@ export const generateColors = (tileNumbers, mode) => {
         // if the random hue already exists in our array, keep randomizing until the value does not already exist
         switch(mode) {
             case 'easy':
-                while (colorArray.some(color => Math.abs(color - randomHue) <= 13 )) {
+                // colors are at least 13 hues apart
+                while (colorArray.some(color => Math.abs(color - randomHue) < 13 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'hard':
-                while (colorArray.some(color => Math.abs(color - randomHue) <= 5 )) {
+                // colors are at least 5 hues apart
+                while (colorArray.some(color => Math.abs(color - randomHue) < 5 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'extra':
+                // colors are at most 30 hues from each other
                 while (colorArray.some(color => Math.abs(color - randomHue) >= 30 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             default:
-                while (colorArray.some(color => Math.abs(color - randomHue) <= 10 )) {
+                // medium as default: colors are at least 10 hues apart
+                while (colorArray.some(color => Math.abs(color - randomHue) < 10 )) {
                     randomHue = Math.round(Math.random() * 255);
                 };
         }
