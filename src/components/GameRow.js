@@ -40,7 +40,8 @@ function GameRow() {
 
     // handles the button that loads the next round of colors; a 'reset' button
     function handleOnClick(difficulty) {
-        setStartingColors(generateColors(_GAME_SIZE, difficulty)); 
+        setStartingColors(generateColors(_GAME_SIZE, difficulty));
+        console.log(difficulty); 
     }
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
