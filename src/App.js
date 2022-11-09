@@ -1,6 +1,6 @@
 import GameRow from './components/GameRow';
 import Splash from './components/Splash'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function App() {
 

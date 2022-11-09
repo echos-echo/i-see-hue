@@ -41,7 +41,7 @@ function GameRow() {
     // handles the button that loads the next round of colors; a 'reset' button
     function handleOnClick(difficulty) {
         setStartingColors(generateColors(_GAME_SIZE, difficulty));
-        console.log(difficulty); 
+        setDifficult(difficulty);
     }
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
@@ -51,6 +51,7 @@ function GameRow() {
             document.querySelector('#game-row').style.border = '4px solid black';
             setComplete(true);
         }
+        console.log(solution);
     }, [colors, solution]);
 
     // useEffect that will reassign the solution, first/last colors, based on the newly generated game
@@ -72,13 +73,14 @@ function GameRow() {
         // DragDropContext is the space in which Droppables exist and Draggable can be dropped into
         // cannot next multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
-            {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
+            <h3>Difficulty: <i>{difficulty}</i></h3>
             <div id='difficulties'>
                 <button onClick={() => handleOnClick('easy')}>Easy</button>
                 <button onClick={() => handleOnClick('medium')}>Medium</button>
                 <button onClick={() => handleOnClick('hard')}>Hard</button>
                 <button onClick={() => handleOnClick('extra')}>You might be a robot</button>
             </div>
+            {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
             <Droppable droppableId='game-row' direction='horizontal'>
                 {provided => (
                     // ONE root element in the return of Droppable's callback argument
