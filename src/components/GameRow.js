@@ -76,10 +76,10 @@ function GameRow() {
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             <h3>Difficulty: <i>{difficulty}</i></h3>
             <div id='difficulties'>
-                <button onClick={() => handleOnClick('easy')}>Easy</button>
-                <button onClick={() => handleOnClick('medium')}>Medium</button>
-                <button onClick={() => handleOnClick('hard')}>Hard</button>
-                <button onClick={() => handleOnClick('extra')}>You might be a robot</button>
+                <button class='modeButton' onClick={() => handleOnClick('easy')}>Easy</button>
+                <button class='modeButton' onClick={() => handleOnClick('medium')}>Medium</button>
+                <button class='modeButton' onClick={() => handleOnClick('hard')}>Hard</button>
+                <button class='modeButton' onClick={() => handleOnClick('extra')}>You might be a robot</button>
             </div>
             {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
             <Droppable droppableId='game-row' direction='horizontal'>
