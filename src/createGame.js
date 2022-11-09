@@ -12,25 +12,29 @@ export const generateColors = (tileNumbers, mode) => {
         switch(mode) {
             case 'easy':
                 // colors are at least 13 hues apart
-                while (colorArray.some(color => Math.abs(color - randomHue) < 13 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) < 13)
+                || colorArray.includes(randomHue)) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'hard':
                 // colors are at least 5 hues apart
-                while (colorArray.some(color => Math.abs(color - randomHue) < 5 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) < 5)
+                || colorArray.includes(randomHue)) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             case 'extra':
                 // colors are at most 30 hues from each other
-                while (colorArray.some(color => Math.abs(color - randomHue) >= 30 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) > 30)
+                || colorArray.includes(randomHue)) {
                     randomHue = Math.round(Math.random() * 255);
                 };
                 break;
             default:
                 // medium as default: colors are at least 10 hues apart
-                while (colorArray.some(color => Math.abs(color - randomHue) < 10 )) {
+                while (colorArray.some(color => Math.abs(color - randomHue) < 10)
+                || colorArray.includes(randomHue)) {
                     randomHue = Math.round(Math.random() * 255);
                 };
         }

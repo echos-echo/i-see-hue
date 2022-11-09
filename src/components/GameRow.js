@@ -40,7 +40,9 @@ function GameRow() {
 
     // handles the button that loads the next round of colors; a 'reset' button
     function handleOnClick(difficulty) {
-        setStartingColors(generateColors(_GAME_SIZE, difficulty));
+        console.log('wahoooooo')
+        let tempColors = generateColors(_GAME_SIZE, difficulty)
+        setStartingColors(tempColors);
         setDifficult(difficulty);
     }
     
@@ -51,7 +53,6 @@ function GameRow() {
             document.querySelector('#game-row').style.border = '4px solid black';
             setComplete(true);
         }
-        console.log(solution);
     }, [colors, solution]);
 
     // useEffect that will reassign the solution, first/last colors, based on the newly generated game
