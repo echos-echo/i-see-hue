@@ -97,6 +97,10 @@ button:hover {
   border: 4px solid darkolivegreen;
 }
 
+.active-mode {
+  background-color: rgb(154, 232, 187);
+}
+
 /* the div that appears once sorting by user is complete, then prompts user to continue the game */
 #nextPrompt {
   width: 50%;
