@@ -78,10 +78,9 @@ function GameRow() {
         // DragDropContext is the space in which Droppables exist and Draggable can be dropped into
         // cannot nest multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
-            <h3>Difficulty: <i>{difficulty}</i></h3>
             <div id='difficulties'>
                 <button class='modeButton' id='easy' onClick={() => handleOnClick('easy')}>Easy</button>
-                <button class='modeButton' id='medium' onClick={() => handleOnClick('medium')}>Medium</button>
+                <button class='modeButton active-mode' id='medium' onClick={() => handleOnClick('medium')}>Medium</button>
                 <button class='modeButton' id='hard' onClick={() => handleOnClick('hard')}>Hard</button>
                 <button class='modeButton' id='extra' onClick={() => handleOnClick('extra')}>You might be a robot</button>
             </div>
