@@ -25,8 +25,8 @@ export const generateColors = (tileNumbers, mode) => {
                 };
                 break;
             case 'extra':
-                // colors are at most 30 hues from each other
-                while (colorArray.some(color => Math.abs(color - randomHue) > 30)
+                // colors are at most 25 hues from each other
+                while (colorArray.some(color => Math.abs(color - randomHue) > 25)
                 || colorArray.includes(randomHue)) {
                     randomHue = Math.round(Math.random() * 255);
                 };
