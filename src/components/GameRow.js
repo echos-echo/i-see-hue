@@ -40,7 +40,6 @@ function GameRow() {
 
     // handles the button that loads the next round of colors; a 'reset' button
     function handleOnClick(difficulty) {
-        console.log('wahoooooo')
         let tempColors = generateColors(_GAME_SIZE, difficulty)
         setStartingColors(tempColors);
         setDifficult(difficulty);
