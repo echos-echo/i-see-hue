@@ -43,7 +43,11 @@ function GameRow() {
         let tempColors = generateColors(_GAME_SIZE, difficulty)
         setStartingColors(tempColors);
         setDifficult(difficulty);
+        // for when this function is passed to the NextGame component, or whenever the prompt is shown
         document.querySelector('#nextPrompt').style.display = 'none';
+
+        document.querySelectorAll('.modeButton').forEach(button => button.className = 'modeButton');
+        document.querySelector(`#${difficulty}`).classList.add('active-mode')
     }
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
@@ -76,10 +80,10 @@ function GameRow() {
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             <h3>Difficulty: <i>{difficulty}</i></h3>
             <div id='difficulties'>
-                <button class='modeButton' onClick={() => handleOnClick('easy')}>Easy</button>
-                <button class='modeButton' onClick={() => handleOnClick('medium')}>Medium</button>
-                <button class='modeButton' onClick={() => handleOnClick('hard')}>Hard</button>
-                <button class='modeButton' onClick={() => handleOnClick('extra')}>You might be a robot</button>
+                <button class='modeButton' id='easy' onClick={() => handleOnClick('easy')}>Easy</button>
+                <button class='modeButton' id='medium' onClick={() => handleOnClick('medium')}>Medium</button>
+                <button class='modeButton' id='hard' onClick={() => handleOnClick('hard')}>Hard</button>
+                <button class='modeButton' id='extra' onClick={() => handleOnClick('extra')}>You might be a robot</button>
             </div>
             {/* Droppable is the space in which Draggables can land, a 'target' so to speak */}
             <Droppable droppableId='game-row' direction='horizontal'>
