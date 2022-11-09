@@ -43,6 +43,7 @@ function GameRow() {
         let tempColors = generateColors(_GAME_SIZE, difficulty)
         setStartingColors(tempColors);
         setDifficult(difficulty);
+        document.querySelector('#nextPrompt').style.display = 'none';
     }
     
     // useEffect that will check the tiles against the solution every time a tile is moved (in colors)
@@ -71,7 +72,7 @@ function GameRow() {
     
     return (
         // DragDropContext is the space in which Droppables exist and Draggable can be dropped into
-        // cannot next multiple DragDropContexts
+        // cannot nest multiple DragDropContexts
         <DragDropContext id='play' onDragEnd={handleOnDragEnd}>
             <h3>Difficulty: <i>{difficulty}</i></h3>
             <div id='difficulties'>
